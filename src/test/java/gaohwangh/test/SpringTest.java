@@ -14,8 +14,11 @@ public class SpringTest {
 
 	@Test
 	public void test() {
-		AnnotationConfigApplicationContext context =
-				new AnnotationConfigApplicationContext(Config.class);
+			AnnotationConfigApplicationContext context =
+				new AnnotationConfigApplicationContext();
+		context.register(Config.class);
+		context.setAllowCircularReferences(false);
+		context.refresh();
 		GaohWanghModel gaohWanghModel = context.getBean(GaohWanghModel.class);
 		System.out.println(gaohWanghModel);
 
