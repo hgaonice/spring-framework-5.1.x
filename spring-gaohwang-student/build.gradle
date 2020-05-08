@@ -54,6 +54,7 @@ dependencies {
     //tomcat
     compile("org.apache.tomcat.embed:tomcat-embed-core:9.0.14")
     compile("org.projectlombok:lombok:1.18.8")
+    compile("org.slf4j:slf4j-nop:1.7.2")
 //    compile("junit:junit:4.12")
 
    /* <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->

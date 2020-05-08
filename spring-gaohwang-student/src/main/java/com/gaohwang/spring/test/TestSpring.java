@@ -14,9 +14,8 @@ public class TestSpring {
 
     @Test
     public void test01(){
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
-
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
         X bean = applicationContext.getBean(X.class);
-        System.out.println(bean);
+		System.out.println(bean);
     }
 }

@@ -88,17 +88,20 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 
 	/**
 	 * Set of registered singletons, containing the bean names in registration order.
+	 * 一组已注册的单例，包含按注册顺序排列的bean名称。
 	 */
 	private final Set<String> registeredSingletons = new LinkedHashSet<>(256);
 
 	/**
 	 * Names of beans that are currently in creation.
+	 * 当前正在创建的bean的名称。bean创建完成后挥锄锄掉
 	 */
 	private final Set<String> singletonsCurrentlyInCreation =
 			Collections.newSetFromMap(new ConcurrentHashMap<>(16));
 
 	/**
 	 * Names of beans currently excluded from in creation checks.
+	 * 正在创建的Bean集合
 	 */
 	private final Set<String> inCreationCheckExclusions =
 			Collections.newSetFromMap(new ConcurrentHashMap<>(16));
@@ -176,9 +179,19 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
 		Assert.notNull(singletonFactory, "Singleton factory must not be null");
+		//singletonObjects 一级缓存map
 		synchronized (this.singletonObjects) {
+			/*
+			 * 如果单例池当中不存在才会Add,这里主要是为了循环依赖服务的代码
+			 * 如果bean存在单例池的话,已经是一个完整的bean
+			 */
 			if (!this.singletonObjects.containsKey(beanName)) {
+				//将工厂对象put到singletonFactories二级缓存
 				this.singletonFactories.put(beanName, singletonFactory);
+				/*
+				 * 从三级缓存earlySingletonObjects中移除掉当前bean
+				 * 确保唯一性
+				 */
 				this.earlySingletonObjects.remove(beanName);
 				this.registeredSingletons.add(beanName);
 			}
@@ -287,6 +300,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					afterSingletonCreation(beanName);
 				}
 				if (newSingleton) {
+					//push到单例容器中
 					addSingleton(beanName, singletonObject);
 				}
 			}
