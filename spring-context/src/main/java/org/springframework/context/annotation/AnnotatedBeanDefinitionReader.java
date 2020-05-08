@@ -129,6 +129,11 @@ public class AnnotatedBeanDefinitionReader {
 	 * <p>Calls to {@code register} are idempotent; adding the same
 	 * component class more than once has no additional effect.
 	 * @param componentClasses one or more component classes,
+	 *
+	 * 注册一个或多个要处理的组件类。
+	 * <p>调用{@code register}是幂等的;添加相同的
+	 * 不止一次的组件类没有额外的效果。
+	 * 一个或多个组件类，
 	 * e.g. {@link Configuration @Configuration} classes
 	 */
 	public void register(Class<?>... componentClasses) {
@@ -140,6 +145,8 @@ public class AnnotatedBeanDefinitionReader {
 	/**
 	 * Register a bean from the given bean class, deriving its metadata from
 	 * class-declared annotations.
+	 * 注册来自给定bean类的bean，派生其元数据
+	 * class-declared注释。
 	 * @param beanClass the class of the bean
 	 */
 	public void registerBean(Class<?> beanClass) {
@@ -209,6 +216,19 @@ public class AnnotatedBeanDefinitionReader {
 	 * in addition to qualifiers at the bean class level
 	 * @param definitionCustomizers one or more callbacks for customizing the
 	 * factory's {@link BeanDefinition}, e.g. setting a lazy-init or primary flag
+	 *
+	 *
+	 * 从给定的bean类注册一个bean，从它的元数据派生
+	 * class-declared注释。
+	 * @param beanClass bean的类
+	 * @param instanceSupplier 创建bean实例的回调
+	 * (可能是{@code null})
+	 * @param  name 为bean指定一个显式的名称
+	 * @param  qualifiers 限定符需要考虑的特定限定符注释(如果有的话)
+	 * 除了bean类级别的限定符之外
+	 * 类的一个或多个回调
+	 * @param definitionCustomizers  属性的一个或多个回调工厂的
+	 * {@link BeanDefinition}， 例如设置一个lazy-init或主标志
 	 * @since 5.0
 	 */
 	<T> void doRegisterBean(Class<T> beanClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,
