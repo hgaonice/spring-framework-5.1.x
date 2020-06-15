@@ -941,6 +941,10 @@ public abstract class ClassUtils {
 
 	/**
 	 * Get the class name without the qualified package name.
+	 * 获取没有限定包名的类名。
+	 *
+	 * 根据传入字符串获取一个具体类名称，不含包路径，考虑cglib代理的类，做了一个特殊处理。
+	 *
 	 * @param className the className to get the short name for
 	 * @return the class name of the class without the package name
 	 * @throws IllegalArgumentException if the className is empty
