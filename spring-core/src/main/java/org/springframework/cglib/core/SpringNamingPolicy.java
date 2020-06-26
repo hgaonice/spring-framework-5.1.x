@@ -26,6 +26,10 @@ package org.springframework.cglib.core;
  *
  * @author Juergen Hoeller
  * @since 3.2.8
+ *
+ * 执行：gradle objenesisRepackJar 、    gradle cglibRepackJar
+ *
+ * 解决 DefaultNamingPolicy不存在问题
  */
 public class SpringNamingPolicy extends DefaultNamingPolicy {
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @version 1.0
  * @date 2020/5/8 9:56
  */
-@Component
+@Component("x")
 public class X {
 
     @Autowired

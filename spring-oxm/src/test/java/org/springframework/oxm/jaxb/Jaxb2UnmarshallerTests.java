@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package org.springframework.oxm.jaxb;
 
@@ -41,11 +42,13 @@ import org.springframework.util.xml.StaxUtils;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 
+*/
 /**
  * @author Arjen Poutsma
  * @author Biju Kunjummen
  * @author Sam Brannen
- */
+ *//*
+
 public class Jaxb2UnmarshallerTests extends AbstractUnmarshallerTests<Jaxb2Marshaller> {
 
 	private static final String INPUT_STRING = "<tns:flights xmlns:tns=\"http://samples.springframework.org/flight\">" +
@@ -145,3 +148,4 @@ public class Jaxb2UnmarshallerTests extends AbstractUnmarshallerTests<Jaxb2Marsh
 	}
 
 }
+*/

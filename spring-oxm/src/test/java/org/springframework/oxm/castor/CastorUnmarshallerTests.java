@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package org.springframework.oxm.castor;
 
@@ -35,24 +36,30 @@ import org.springframework.oxm.MarshallingException;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+*/
 /**
  * @author Arjen Poutsma
  * @author Jakub Narloch
  * @author Sam Brannen
- */
+ *//*
+
 @Deprecated
 public class CastorUnmarshallerTests extends AbstractUnmarshallerTests<CastorMarshaller> {
 
-	/**
+	*/
+/**
 	 * Represents the xml with additional attribute that is not mapped in Castor config.
-	 */
+	 *//*
+
 	protected static final String EXTRA_ATTRIBUTES_STRING =
 			"<tns:flights xmlns:tns=\"http://samples.springframework.org/flight\">" +
 			"<tns:flight status=\"canceled\"><tns:number>42</tns:number></tns:flight></tns:flights>";
 
-	/**
+	*/
+/**
 	 * Represents the xml with additional element that is not mapped in Castor config.
-	 */
+	 *//*
+
 	protected static final String EXTRA_ELEMENTS_STRING =
 			"<tns:flights xmlns:tns=\"http://samples.springframework.org/flight\">" +
 			"<tns:flight><tns:number>42</tns:number><tns:date>2011-06-14</tns:date>" +
@@ -258,3 +265,4 @@ public class CastorUnmarshallerTests extends AbstractUnmarshallerTests<CastorMar
 	}
 
 }
+*/

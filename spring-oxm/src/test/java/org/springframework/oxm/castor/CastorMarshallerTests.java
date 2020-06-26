@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 
 package org.springframework.oxm.castor;
 
@@ -41,54 +42,68 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.xmlunit.matchers.CompareMatcher.*;
 
+*/
 /**
  * Tests the {@link CastorMarshaller} class.
  *
  * @author Arjen Poutsma
  * @author Jakub Narloch
  * @author Sam Brannen
- */
+ *//*
+
 @Deprecated
 public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshaller> {
 
-	/**
+	*/
+/**
 	 * Represents the expected result that doesn't contain the xml declaration.
-	 */
+	 *//*
+
 	private static final String DOCUMENT_EXPECTED_STRING = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 			"<tns:flights xmlns:tns=\"http://samples.springframework.org/flight\">" +
 			"<tns:flight><tns:number>42</tns:number></tns:flight></tns:flights>";
 
-	/**
+	*/
+/**
 	 * Represents the expected result that doesn't contain the xml namespaces.
-	 */
+	 *//*
+
 	private static final String SUPPRESSED_NAMESPACE_EXPECTED_STRING =
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><flights><flight><number>42</number></flight></flights>";
 
-	/**
+	*/
+/**
 	 * Represents the expected result with modified root element name.
-	 */
+	 *//*
+
 	private static final String ROOT_ELEMENT_EXPECTED_STRING = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 			"<tns:canceledFlights xmlns:tns=\"http://samples.springframework.org/flight\">" +
 			"<tns:flight><tns:number>42</tns:number></tns:flight></tns:canceledFlights>";
 
-	/**
+	*/
+/**
 	 * Represents the expected result with 'xsi:type' attribute.
-	 */
+	 *//*
+
 	private static final String XSI_EXPECTED_STRING = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 			"<objects><castor-object xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" +
 			" xmlns:java=\"http://java.sun.com\"" +
 			" xsi:type=\"java:org.springframework.oxm.castor.CastorObject\">" +
 			"<name>test</name><value>8</value></castor-object></objects>";
 
-	/**
+	*/
+/**
 	 * Represents the expected result with suppressed 'xsi:type' attribute.
-	 */
+	 *//*
+
 	private static final String SUPPRESSED_XSI_EXPECTED_STRING = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 			"<objects><castor-object><name>test</name><value>8</value></castor-object></objects>";
 
-	/**
+	*/
+/**
 	 * Represents the expected result with 'xsi:type' attribute for root element.
-	 */
+	 *//*
+
 	private static final String ROOT_WITH_XSI_EXPECTED_STRING = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 			"<objects xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" +
 			" xmlns:java=\"http://java.sun.com\"" +
@@ -96,9 +111,11 @@ public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshal
 			"<castor-object xsi:type=\"java:org.springframework.oxm.castor.CastorObject\">" +
 			"<name>test</name><value>8</value></castor-object></objects>";
 
-	/**
+	*/
+/**
 	 * Represents the expected result without 'xsi:type' attribute for root element.
-	 */
+	 *//*
+
 	private static final String ROOT_WITHOUT_XSI_EXPECTED_STRING = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 			"<objects><castor-object xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" +
 			" xmlns:java=\"http://java.sun.com\"" +
@@ -264,7 +281,8 @@ public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshal
 		return marshal(flights);
 	}
 
-	/**
+	*/
+/**
 	 * Assert the values of xpath expression evaluation is exactly the same as expected value.
 	 * <p>The xpath may contain the xml namespace prefixes, since namespaces from flight example
 	 * are being registered.
@@ -273,7 +291,8 @@ public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshal
 	 * @param xpath the xpath to evaluate
 	 * @param xmlDoc the xml to use
 	 * @throws Exception if any error occurs during xpath evaluation
-	 */
+	 *//*
+
 	private void assertXpathEvaluatesTo(String msg, String expected, String xpath, String xmlDoc) throws Exception {
 		Map<String, String> namespaces = new HashMap<>();
 		namespaces.put("tns", "http://samples.springframework.org/flight");
@@ -287,9 +306,11 @@ public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshal
 		assertEquals(msg, expected, nodeList.iterator().next().getNodeValue());
 	}
 
-	/**
+	*/
+/**
 	 * Create an instance of {@link CastorObject} for testing.
-	 */
+	 *//*
+
 	private CastorObject createCastorObject() {
 		CastorObject castorObject = new CastorObject();
 		castorObject.setName("test");
@@ -298,3 +319,4 @@ public class CastorMarshallerTests extends AbstractMarshallerTests<CastorMarshal
 	}
 
 }
+*/
