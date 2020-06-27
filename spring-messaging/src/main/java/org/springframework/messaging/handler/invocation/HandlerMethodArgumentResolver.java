@@ -32,21 +32,27 @@ public interface HandlerMethodArgumentResolver {
 	/**
 	 * Whether the given {@linkplain MethodParameter method parameter} is
 	 * supported by this resolver.
+	 *
 	 * @param parameter the method parameter to check
 	 * @return {@code true} if this resolver supports the supplied parameter;
 	 * {@code false} otherwise
+	 * <p>
+	 * 该解析器是否支持parameter参数的解析
 	 */
 	boolean supportsParameter(MethodParameter parameter);
 
 	/**
 	 * Resolves a method parameter into an argument value from a given message.
+	 *
 	 * @param parameter the method parameter to resolve.
-	 * This parameter must have previously been passed to
-	 * {@link #supportsParameter(org.springframework.core.MethodParameter)}
-	 * which must have returned {@code true}.
-	 * @param message the currently processed message
+	 *                  This parameter must have previously been passed to
+	 *                  {@link #supportsParameter(org.springframework.core.MethodParameter)}
+	 *                  which must have returned {@code true}.
+	 * @param message   the currently processed message
 	 * @return the resolved argument value, or {@code null}
 	 * @throws Exception in case of errors with the preparation of argument values
+	 *                   <p>
+	 *                   将方法参数从给定请求(webRequest)解析为参数值并返回
 	 */
 	@Nullable
 	Object resolveArgument(MethodParameter parameter, Message<?> message) throws Exception;
