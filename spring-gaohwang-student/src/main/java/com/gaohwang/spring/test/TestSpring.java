@@ -12,10 +12,22 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class TestSpring {
 
-    @Test
-    public void test01(){
+	/**
+	 * spring-aspects\src\main\java\org\springframework\cache\aspectj\AspectJJCacheConfiguration.java
+	 * spring-context-support\src\main\java\org\springframework\cache\transaction\TransactionAwareCacheDecorator.java
+	 * spring-context-support\src\main\java\org\springframework\scheduling\quartz\LocalDataSourceJobStore.java
+	 * spring-context-support\src\main\java\org\springframework\scheduling\quartz\SchedulerAccessor.java
+	 * spring-context-support\src\main\java\org\springframework\cache\transaction\AbstractTransactionSupportingCacheManager.java
+	 * spring-context-support\src\main\java\org\springframework\cache\transaction\TransactionAwareCacheManagerProxy.java
+	 */
+
+	@Test
+	public void test01() {
+		System.out.println(this.getClass().getResource("/"));
 		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
-        X bean = applicationContext.getBean(X.class);
+//		applicationContext.scan("com.gaohwang.spring");
+//		applicationContext.refresh();
+		X bean = applicationContext.getBean(X.class);
 		System.out.println(bean);
-    }
+	}
 }

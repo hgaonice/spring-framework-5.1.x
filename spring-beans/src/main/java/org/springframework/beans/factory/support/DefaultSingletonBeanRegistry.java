@@ -16,26 +16,15 @@
 
 package org.springframework.beans.factory.support;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.BeanCreationNotAllowedException;
-import org.springframework.beans.factory.BeanCurrentlyInCreationException;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.config.SingletonBeanRegistry;
 import org.springframework.core.SimpleAliasRegistry;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Generic registry for shared bean instances, implementing the
@@ -160,9 +149,12 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * @param singletonObject the singleton object
 	 */
 	protected void addSingleton(String beanName, Object singletonObject) {
+		//同步单例容器singletonObjects
 		synchronized (this.singletonObjects) {
 			this.singletonObjects.put(beanName, singletonObject);
+			//移除二级缓存
 			this.singletonFactories.remove(beanName);
+			//移除三级缓存
 			this.earlySingletonObjects.remove(beanName);
 			this.registeredSingletons.add(beanName);
 		}
@@ -224,20 +216,20 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		// 检查一级缓存singletonObject是否存在
 		Object singletonObject = this.singletonObjects.get(beanName);
 		// 当前还不存在这个单例对象，
-		// 且该对象正在创建中，即在singletonsCurrentlyInCreation列表中
+		// 且该对象正在创建中，即在singletonsCurrentlyInCreation正在创建bean列表中
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {
-				// 检查二级缓存earlySingletonObjects是否存在
+				// 检查三级缓存earlySingletonObjects是否存在
 				singletonObject = this.earlySingletonObjects.get(beanName);
 				if (singletonObject == null && allowEarlyReference) {
-					// 检查三级缓存singletonFactory是否可以创建
+					// 检查二级缓存singletonFactory是否可以创建
 					ObjectFactory<?> singletonFactory = this.singletonFactories.get(beanName);
 					if (singletonFactory != null) {
-						// 三级缓存的对象工厂创建该对象
+						// 二级缓存的对象工厂创建该对象
 						singletonObject = singletonFactory.getObject();
-						// 放入二级缓存earlySingletonObjects中
+						// 放入三级缓存earlySingletonObjects中 半成品的bean放入三级缓存中
 						this.earlySingletonObjects.put(beanName, singletonObject);
-						// 移除一级缓存
+						// 移除二级缓存
 						this.singletonFactories.remove(beanName);
 					}
 				}
@@ -297,6 +289,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					if (recordSuppressedExceptions) {
 						this.suppressedExceptions = null;
 					}
+					//　创建单例的后置回调
 					afterSingletonCreation(beanName);
 				}
 				if (newSingleton) {
@@ -393,7 +386,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 * <p>The default implementation register the singleton as currently in creation.
 	 *
 	 * @param beanName the name of the singleton about to be created
-	 * @see #isSingletonCurrentlyInCreation
+	 * @see #isSingletonCurrentlyInCreation  inCreationCheckExclusions 这里是判断当前需要创建的bean是否在Exclusions集合
 	 */
 	protected void beforeSingletonCreation(String beanName) {
 		if (!this.inCreationCheckExclusions.contains(beanName) && !this.singletonsCurrentlyInCreation.add(beanName)) {
