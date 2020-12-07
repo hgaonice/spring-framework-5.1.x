@@ -425,6 +425,13 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			return pvs;
 		}
 
+		/**
+		 * //fixme 实例化bean，执行第七次后置处理器（二） 如果实现了ImportAware接口，在postProcessBeforeInitialization中首先解析出importingClass，使得bean能感知到importingClass
+		 *
+		 * @param bean
+		 * @param beanName
+		 * @return
+		 */
 		@Override
 		public Object postProcessBeforeInitialization(Object bean, String beanName) {
 			if (bean instanceof ImportAware) {

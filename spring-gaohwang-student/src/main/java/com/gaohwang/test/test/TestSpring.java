@@ -1,7 +1,7 @@
 package com.gaohwang.test.test;
 
 import com.gaohwang.test.config.ConfigTest;
-import lombok.extern.slf4j.Slf4j;
+import org.openjdk.jol.info.ClassLayout;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -20,5 +20,9 @@ public class TestSpring {
 		for (String beanName : beanDefinitionNames) {
 			System.out.println(beanName);
 		}
+
+		Object o = new Object();
+		System.out.println(ClassLayout.parseInstance(o).toPrintable());
+
 	}
 }
