@@ -3,6 +3,7 @@ package com.gaohwang.factorybean.test;
 import com.gaohwang.factorybean.config.Config;
 import com.gaohwang.factorybean.interfaces.CalculateService;
 import com.gaohwang.factorybean.interfaces.TestService;
+import com.gaohwang.factorybean.interfaces.UserMapper;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -26,5 +27,9 @@ public class Test001 {
         String calculateResult = calculateService.getResult("测试");
 
         System.out.println(testList + "," + calculateResult);
+
+
+		UserMapper userMapper = (UserMapper) context.getBean("userMapper");
+		userMapper.selectUserById();
     }
 }
