@@ -2,6 +2,7 @@ package com.gaohwang.tomcat.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @Author: GH
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
 
-	@RequestMapping("/test")
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String test() {
 		System.out.println("test");
 		return "123";
