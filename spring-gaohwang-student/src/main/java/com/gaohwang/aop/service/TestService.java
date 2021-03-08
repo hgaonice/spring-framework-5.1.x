@@ -1,20 +1,18 @@
 package com.gaohwang.aop.service;
 
 import com.gaohwang.aop.aop.AnnotationTest;
-import com.gaohwang.aop.dao.StudentDao;
 import org.springframework.stereotype.Component;
 
 /**
  * @Description:
  * @Author: gaoh
- * @Date: 2020/9/13 9:56
+ * @Date: 2021/3/3 20:01
  * @Version: 1.0
  */
 @Component
-public class StudentImpl implements StudentDao {
+public class TestService {
 	@AnnotationTest
-	@Override
-	public void student() {
-		System.out.println("Good Good Student !");
+	public void test() {
+		System.out.println("Test");
 	}
 }

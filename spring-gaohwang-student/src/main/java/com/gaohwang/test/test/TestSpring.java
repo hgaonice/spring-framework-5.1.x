@@ -1,7 +1,6 @@
 package com.gaohwang.test.test;
 
 import com.gaohwang.test.config.ConfigTest;
-import org.openjdk.jol.info.ClassLayout;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -21,8 +20,8 @@ public class TestSpring {
 			System.out.println(beanName);
 		}
 
-		Object o = new Object();
-		System.out.println(ClassLayout.parseInstance(o).toPrintable());
+//		Object o = new Object();
+//		System.out.println(ClassLayout.parseInstance(o).toPrintable());
 
 	}
 }

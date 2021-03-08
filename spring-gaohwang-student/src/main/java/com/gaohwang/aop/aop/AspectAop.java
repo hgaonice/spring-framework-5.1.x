@@ -18,7 +18,8 @@ import java.lang.reflect.Method;
 @Aspect
 @Component
 public class AspectAop {
-	@Pointcut("execution(* com.gaohwang.aop.service.*.*(..))")
+//	@Pointcut("execution(* com.gaohwang.aop.service.*.*(..))")
+	@Pointcut("@annotation(AnnotationTest)")
 	public void pointCut() {
 	}
 
@@ -36,7 +37,7 @@ public class AspectAop {
 		} catch (Throwable throwable) {
 			throwable.printStackTrace();
 		}
-		System.out.println("执行时间：" + (System.currentTimeMillis() - time));
+		System.out.println("执行时间：" + (System.currentTimeMillis() - time)+"\n");
 		return proceed;
 	}
 }
