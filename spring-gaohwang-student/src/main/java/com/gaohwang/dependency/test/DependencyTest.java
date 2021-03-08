@@ -17,9 +17,8 @@ public class DependencyTest {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class);
         Aa a = applicationContext.getBean(Aa.class);
         Bb b = applicationContext.getBean(Bb.class);
+        System.out.println(a);
         System.out.println(b);
-        System.out.println(b);
-        System.out.println("");
         //NoUniqueBeanDefinitionException
         Object o = new Object();
 		System.out.println(ClassLayout.parseInstance(o).toPrintable());
