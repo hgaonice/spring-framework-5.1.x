@@ -16,12 +16,8 @@
 
 package org.springframework.aop.framework.autoproxy;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.aop.Advisor;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.BeanCurrentlyInCreationException;
@@ -29,6 +25,9 @@ import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Helper for retrieving standard Spring Advisors from a BeanFactory,
@@ -59,16 +58,21 @@ public class BeanFactoryAdvisorRetrievalHelper {
 
 
 	/**
+	 * 在当前bean工厂中查找所有合格的Advisor bean，忽略FactoryBeans并排除当前正在创建的bean。
 	 * Find all eligible Advisor beans in the current bean factory,
 	 * ignoring FactoryBeans and excluding beans that are currently in creation.
 	 * @return the list of {@link org.springframework.aop.Advisor} beans
 	 * @see #isEligibleBean
 	 */
 	public List<Advisor> findAdvisorBeans() {
-		// Determine list of advisor bean names, if not cached already.
+		// Determine list of advisor bean names, if not cached already. 确定advisor的bean名称的列表（如果尚未缓存）。
 		String[] advisorNames = this.cachedAdvisorBeanNames;
+		/*
+		 * 如果 cachedAdvisorBeanNames 为空，这里到容器中查找，
+		 * 并设置缓存，后续直接使用缓存即可
+		 */
 		if (advisorNames == null) {
-			// Do not initialize FactoryBeans here: We need to leave all regular beans
+			// Do not initialize FactoryBeans here: We need to leave all regular beans  不要在这里初始化FactoryBeans：我们需要保留所有未初始化的常规bean，以使自动代理创建者对其应用！
 			// uninitialized to let the auto-proxy creator apply to them!
 			advisorNames = BeanFactoryUtils.beanNamesForTypeIncludingAncestors(
 					this.beanFactory, Advisor.class, true, false);
@@ -79,8 +83,10 @@ public class BeanFactoryAdvisorRetrievalHelper {
 		}
 
 		List<Advisor> advisors = new ArrayList<>();
+		// 遍历 advisorNames
 		for (String name : advisorNames) {
 			if (isEligibleBean(name)) {
+				// 忽略正在创建中的 advisor bean
 				if (this.beanFactory.isCurrentlyInCreation(name)) {
 					if (logger.isTraceEnabled()) {
 						logger.trace("Skipping currently created advisor '" + name + "'");
@@ -88,6 +94,10 @@ public class BeanFactoryAdvisorRetrievalHelper {
 				}
 				else {
 					try {
+						/*
+						 * 调用 getBean 方法从容器中获取名称为 name 的 bean，
+						 * 并将 bean 添加到 advisors 中
+						 */
 						advisors.add(this.beanFactory.getBean(name, Advisor.class));
 					}
 					catch (BeanCreationException ex) {

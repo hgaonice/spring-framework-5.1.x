@@ -3,6 +3,7 @@ package com.gaohwang.aop.aop;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,15 @@ public class AspectAop {
 			throwable.printStackTrace();
 		}
 		System.out.println("执行时间：" + (System.currentTimeMillis() - time)+"\n");
+		System.out.println();
+		//0001
+		//0001 0000
 		return proceed;
+	}
+
+	@Before("pointCut()")
+	public void before() {
+		System.out.println("before");
+		System.out.println();
 	}
 }

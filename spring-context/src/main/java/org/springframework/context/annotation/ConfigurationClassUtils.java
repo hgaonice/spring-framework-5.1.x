@@ -85,7 +85,7 @@ abstract class ConfigurationClassUtils {
 			return false;
 		}
 
-		//元数据  用于判断是否加了注解Configuration
+		//元数据  判断注解信息 用于判断是否加了注解Configuration
 		AnnotationMetadata metadata;
 		//是否是加了注解的bd
 		if (beanDef instanceof AnnotatedBeanDefinition &&
