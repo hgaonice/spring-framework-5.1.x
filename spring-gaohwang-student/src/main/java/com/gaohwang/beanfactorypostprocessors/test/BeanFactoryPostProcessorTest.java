@@ -14,7 +14,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @Date: 2021/3/27 16:25
  * @Version: 1.0
  */
-public class FactoryPostProcessorTest {
+public class BeanFactoryPostProcessorTest {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 		//向容器中添加BeanFactoryPostProcessor
@@ -37,6 +37,8 @@ public class FactoryPostProcessorTest {
 		Demo1 bean = applicationContext.getBean(Demo1.class);
 		System.out.println(bean.getDemo2());
 		System.out.println(bean.getContext());
+
+//		applicationContext.getBeanFactory().registerSingleton();
 
 	}
 }
