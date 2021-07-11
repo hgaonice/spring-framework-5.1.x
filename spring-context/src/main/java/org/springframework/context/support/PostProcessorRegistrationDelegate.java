@@ -53,15 +53,15 @@ final class PostProcessorRegistrationDelegate {
 	public static void invokeBeanFactoryPostProcessors(
 			ConfigurableListableBeanFactory beanFactory, List<BeanFactoryPostProcessor> beanFactoryPostProcessors) {
 
-		// Invoke BeanDefinitionRegistryPostProcessors first, if any. 存储已经执行完的BeanFactoryPostProcessor
-		Set<String> processedBeans = new HashSet<>();
+		// Invoke BeanDefinitionRegistryPostProcessors first, if any.
+		Set<String> processedBeans = new HashSet<>();//存储已经执行完的BeanDefinitionRegistryPostProcessors
 
 		if (beanFactory instanceof BeanDefinitionRegistry) {
 			BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
 			//存储已经执行了，并且直接实现了BeanFactoryPostProcessor的类
-			List<BeanFactoryPostProcessor> regularPostProcessors = new ArrayList<>();
+			List<BeanFactoryPostProcessor> regularPostProcessors = new ArrayList<>();//待执行的BeanFactoryPostProcessor
 			//存储已经处理的BeanDefinitionRegistryPostProcessor类
-			List<BeanDefinitionRegistryPostProcessor> registryProcessors = new ArrayList<>();
+			List<BeanDefinitionRegistryPostProcessor> registryProcessors = new ArrayList<>();//待执行的BeanDefinitionRegistryPostProcessor中父接口的方法
 
 			for (BeanFactoryPostProcessor postProcessor : beanFactoryPostProcessors) {
 				if (postProcessor instanceof BeanDefinitionRegistryPostProcessor) {

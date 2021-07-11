@@ -1,7 +1,12 @@
 package com.gaohwang.tomcat.service;
 
-import org.apache.catalina.LifecycleException;
+import org.apache.catalina.Context;
+import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.startup.Tomcat;
+import org.apache.catalina.webresources.DirResourceSet;
+import org.apache.catalina.webresources.StandardRoot;
+
+import java.io.File;
 
 /**
  * @Author: GH
@@ -11,7 +16,7 @@ import org.apache.catalina.startup.Tomcat;
 public class Run {
 
 	public static void run() {
-		Tomcat tomcat = new Tomcat();
+		/*Tomcat tomcat = new Tomcat();
 		tomcat.setPort(6666);
 		tomcat.addWebapp("/", "d:\\logs\\");
 //		tomcat.addContext("/", "d:\\logs\\");
@@ -20,14 +25,14 @@ public class Run {
 			tomcat.getServer().await();
 		} catch (LifecycleException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 
-		/*Tomcat tom = new Tomcat();
+		Tomcat tom = new Tomcat();
 		tom.setPort(6666);
 		try {
 
-			File file = new File(System.getProperty("java.io.tmpdir"));
+//			File file = new File(System.getProperty("java.io.tmpdir"));
 			//获取项目编译后的claess 路径
 			String path = Run.class.getResource("/").getPath();
 
@@ -47,6 +52,6 @@ public class Run {
 			tom.getServer().await();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 }

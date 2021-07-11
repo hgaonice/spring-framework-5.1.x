@@ -31,13 +31,26 @@ dependencies {
     compile("org.apache.tomcat.embed:tomcat-embed-jasper:9.0.14")
 
     compile("org.projectlombok:lombok:1.18.8")
-    compile("org.slf4j:slf4j-nop:1.7.2")
+//    compile("org.slf4j:slf4j-nop:1.7.2")
     compile("junit:junit:4.12")
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+//    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.7.1'
+//    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.7.1'
+
 
     // https://mvnrepository.com/artifact/com.alibaba/fastjson
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.68'
 
     compile group: "org.openjdk.jol", name: 'jol-core', version: '0.9'
+
+    //mybatis-spring
+    compile(project(":spring-jdbc"))
+    implementation group: 'org.mybatis', name: 'mybatis', version: '3.5.5'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+
+
+    implementation group: 'org.mybatis', name: 'mybatis-spring', version: '2.0.5'
 
 
 }
