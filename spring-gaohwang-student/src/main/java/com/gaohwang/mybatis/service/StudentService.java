@@ -20,7 +20,9 @@ public class StudentService {
 	@Autowired
 	private StudentDao studentDao;
 
+//	@Transactional
 	public List<Map<String, Object>> list() {
+		List<Map<String, Object>> list = studentDao.list();
 		return studentDao.list();
 	}
 

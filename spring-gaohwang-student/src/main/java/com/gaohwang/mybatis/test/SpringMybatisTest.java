@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -46,4 +48,14 @@ public class SpringMybatisTest {
 		lock.lock();
 		lock.unlock();
 	}
+
+	@Test
+	public void select() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MybatisConfig.class);
+		StudentService studentService = context.getBean(StudentService.class);
+		List<Map<String, Object>> list = studentService.list();
+		log.debug("list:{}",list);
+	}
+
+
 }

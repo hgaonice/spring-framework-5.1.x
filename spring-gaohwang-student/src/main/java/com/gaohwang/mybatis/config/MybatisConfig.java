@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -27,6 +29,7 @@ import java.util.List;
 @Configuration
 @ComponentScan("com.gaohwang.mybatis")
 @MapperScan("com.gaohwang.mybatis.dao")
+@EnableTransactionManagement
 public class MybatisConfig {
 
 	@Bean
@@ -63,5 +66,11 @@ public class MybatisConfig {
 		dataSource.setPassword("123456");
 		dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/spring-mybatis?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true");
 		return dataSource;
+	}
+
+
+	@Bean
+	public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource) {
+		return new DataSourceTransactionManager(dataSource);
 	}
 }
